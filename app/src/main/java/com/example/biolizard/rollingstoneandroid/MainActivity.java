@@ -4,6 +4,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.Transition;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.rollingstonelibrary.LoginFragment;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     LoginFragment loginFragment;
     RegisterFragment registerFragment;
     FragmentTransaction transaction;
+    FirebaseAdmin firebaseAdmin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
         loginFragment = (LoginFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_login);
         registerFragment = (RegisterFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_register);
         MainActivityEvents mainActivityEvents = new MainActivityEvents(this);
+        firebaseAdmin = new FirebaseAdmin();
 
+        firebaseAdmin.setFirebaseAdminListener(mainActivityEvents);
         loginFragment.setListener(mainActivityEvents);
         registerFragment.setListener(mainActivityEvents);
 
@@ -33,9 +37,11 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
 
 
+
+
     }
 }
-  class MainActivityEvents implements LoginFragmentListener,RegisterFragmentListener {
+  class MainActivityEvents implements LoginFragmentListener,RegisterFragmentListener, FirebaseAdminListener {
     MainActivity mainActivity;
     public MainActivityEvents(MainActivity mainActivity){
         this.mainActivity = mainActivity;
@@ -58,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
       @Override
       public void registerFragmentNextButtonClicked(String str_user, String str_password) {
+         mainActivity.firebaseAdmin.registerUserWithEmailAndPassword(str_user,str_password,mainActivity);
 
       }
 
@@ -68,5 +75,10 @@ public class MainActivity extends AppCompatActivity {
           transaction.hide(mainActivity.registerFragment);
           transaction.commit();
 
+      }
+
+      @Override
+      public void firebaseAdmin_RegisterOK(boolean bl_ok) {
+          Log.v("MAINACTIVITYEVENTS" , "resultado del registro" + bl_ok);
       }
   }

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "361378016215",
+    "firebase_url": "https://rollingstoneapp-aa6e5.firebaseio.com",
+    "project_id": "rollingstoneapp-aa6e5",
+    "storage_bucket": "rollingstoneapp-aa6e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:361378016215:android:4839cabe8ec2b634",
+        "android_client_info": {
+          "package_name": "com.example.biolizard.rollingstoneandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "361378016215-6118n1be2m9rhif468fufpfmnjeh4rrl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBxoS1DOemvQKnlyW_5IchaW0vhgQf6XU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
