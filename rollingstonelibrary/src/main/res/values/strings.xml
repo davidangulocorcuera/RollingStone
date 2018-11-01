@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">RollingStoneLibrary</string>
+    <string name="str_e_mail">e-mail</string>
+    <string name="str_password">password</string>
+    <string name="str_login">Login</string>
+    <string name="str_register">Register</string>
+    <string name="str_next">next</string>
+    <string name="str_back">back</string>
+</resources>
