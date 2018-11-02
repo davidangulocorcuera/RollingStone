@@ -86,6 +86,6 @@ public class MainActivityEvents implements LoginFragmentListener,RegisterFragmen
 
     @Override
     public void firebaseAdmin_BranchDownloaded(String str_branch, DataSnapshot dataSnapshot) {
-
+        Log.v("DATASNAPSHOT" , str_branch + dataSnapshot);
     }
 }

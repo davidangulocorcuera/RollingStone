@@ -17,7 +17,7 @@ public class PrincipalActivity extends AppCompatActivity {
         PrincipalActivityEvents principalActivityEvents = new PrincipalActivityEvents(this);
         DataHolder.instance.firebaseAdmin.setFirebaseAdminListener(principalActivityEvents);
         profilesListFragment = (ProfilesListFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_profilesList);
-        DataHolder.instance.firebaseAdmin.downloadAndObserveBranch("Users2");
+        DataHolder.instance.firebaseAdmin.downloadAndObserveBranch("Users");
 
     }
 }

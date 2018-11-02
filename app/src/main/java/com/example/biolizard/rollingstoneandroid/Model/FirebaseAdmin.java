@@ -75,6 +75,7 @@ public class FirebaseAdmin {
          refBranch.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                String clave = dataSnapshot.getKey();
              firebaseAdminListener.firebaseAdmin_BranchDownloaded(str_branch,dataSnapshot);
             }
 
