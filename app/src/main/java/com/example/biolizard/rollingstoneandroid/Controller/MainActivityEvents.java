@@ -11,6 +11,7 @@ import com.example.biolizard.rollingstoneandroid.Model.DataHolder;
 import com.example.biolizard.rollingstoneandroid.Model.FirebaseAdminListener;
 import com.example.rollingstonelibrary.Login.LoginFragmentListener;
 import com.example.rollingstonelibrary.Register.RegisterFragmentListener;
+import com.google.firebase.database.DataSnapshot;
 
 public class MainActivityEvents implements LoginFragmentListener,RegisterFragmentListener, FirebaseAdminListener {
   MainActivity mainActivity;
@@ -81,5 +82,10 @@ public class MainActivityEvents implements LoginFragmentListener,RegisterFragmen
         else{
 
         }
+    }
+
+    @Override
+    public void firebaseAdmin_BranchDownloaded(String str_branch, DataSnapshot dataSnapshot) {
+
     }
 }

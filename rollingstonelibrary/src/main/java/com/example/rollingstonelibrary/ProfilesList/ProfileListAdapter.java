@@ -6,9 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.rollingstonelibrary.Model.Profile;
 import com.example.rollingstonelibrary.R;
 
+import java.util.HashMap;
+
 public class ProfileListAdapter extends RecyclerView.Adapter<ProfileViewHolder> {
+    private HashMap<Integer,Profile> hm_profiles;
+    public ProfileListAdapter(HashMap<Integer,Profile> hm_profiles){
+        this.hm_profiles = hm_profiles;
+
+    }
 
     @NonNull
     @Override
@@ -20,11 +28,11 @@ public class ProfileListAdapter extends RecyclerView.Adapter<ProfileViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ProfileViewHolder profileViewHolder, int position) {
-        profileViewHolder.tv_profileName.setText("posicion" + position);
+        profileViewHolder.tv_profileName.setText(hm_profiles.get(position).getStr_email());
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return hm_profiles.size();
     }
 }
