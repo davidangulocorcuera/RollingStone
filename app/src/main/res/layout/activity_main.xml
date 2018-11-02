@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activities.MainActivity">
 
     <fragment
         android:id="@+id/fragment_login"
-        android:name="com.example.rollingstonelibrary.LoginFragment"
+        android:name="com.example.rollingstonelibrary.Login.LoginFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
     <fragment
         android:id="@+id/fragment_register"
-        android:name="com.example.rollingstonelibrary.RegisterFragment"
+        android:name="com.example.rollingstonelibrary.Register.RegisterFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
