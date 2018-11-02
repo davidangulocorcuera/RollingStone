@@ -1,5 +1,8 @@
 package com.example.biolizard.rollingstoneandroid.Model;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class Profile {
     private String str_email;
     public Profile(){

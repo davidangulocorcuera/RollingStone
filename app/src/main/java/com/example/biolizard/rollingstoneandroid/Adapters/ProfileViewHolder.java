@@ -1,11 +1,11 @@
-package com.example.rollingstonelibrary.ProfilesList;
+package com.example.biolizard.rollingstoneandroid.Adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.rollingstonelibrary.R;
+import com.example.biolizard.rollingstoneandroid.R;
 
 class ProfileViewHolder extends  RecyclerView.ViewHolder{
     public TextView tv_profileName;
