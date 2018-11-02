@@ -1,5 +1,6 @@
 package com.example.biolizard.rollingstoneandroid;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
       @Override
       public void loginFragmentLoginButtonClicked(String str_user, String str_password) {
+        mainActivity.firebaseAdmin.loginUserWithEmailAndPassword(str_user,str_password,mainActivity);
 
       }
 
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
       }
 
       @Override
-      public void registerFragmentBackRegisterClicked() {
+      public void registerFragmentBackButtonClicked() {
           FragmentTransaction transaction = mainActivity.getSupportFragmentManager().beginTransaction();
           transaction.show(mainActivity.loginFragment);
           transaction.hide(mainActivity.registerFragment);
@@ -79,6 +81,28 @@ public class MainActivity extends AppCompatActivity {
 
       @Override
       public void firebaseAdmin_RegisterOK(boolean bl_ok) {
+
           Log.v("MAINACTIVITYEVENTS" , "resultado del registro" + bl_ok);
+          if(bl_ok){
+              Intent intent = new Intent(mainActivity,CompleteProfileActivity.class);
+              mainActivity.startActivity(intent);
+              mainActivity.finish();
+          }
+          else{
+              
+          }
+      }
+
+      @Override
+      public void firebaseAdmin_LoginOK(boolean bl_ok) {
+          Log.v("MAINACTIVITYEVENTS" , "resultado del login" + bl_ok);
+          if(bl_ok){
+              Intent intent = new Intent(mainActivity,PrincipalActivity.class);
+              mainActivity.startActivity(intent);
+              mainActivity.finish();
+          }
+          else{
+
+          }
       }
   }

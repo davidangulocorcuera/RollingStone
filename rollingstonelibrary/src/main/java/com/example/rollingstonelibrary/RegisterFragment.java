@@ -55,7 +55,7 @@ class RegisterFragmentEvents implements View.OnClickListener{
             this.registerFragment.registerFragmentListener.registerFragmentNextButtonClicked(this.registerFragment.et_email.getText().toString(),this.registerFragment.et_password.getText().toString());
         }
         else if(v.getId() == this.registerFragment.btn_back.getId()){
-            this.registerFragment.registerFragmentListener.registerFragmentBackRegisterClicked();
+            this.registerFragment.registerFragmentListener.registerFragmentBackButtonClicked();
         }
     }
 }
