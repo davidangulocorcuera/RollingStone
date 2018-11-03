@@ -1,4 +1,4 @@
-package com.example.rollingstonelibrary.ProfilesList;
+package com.example.rollingstonelibrary.List;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,22 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.rollingstonelibrary.Model.Profile;
 import com.example.rollingstonelibrary.R;
 
-import java.util.HashMap;
-
-public class ProfilesListFragment extends Fragment {
+public class ListFragment extends Fragment {
    public RecyclerView recyclerView;
-    public  ProfilesListFragment(){
+    public ListFragment(){
 
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.profiles_list_fragment_layout, container, false);
-        recyclerView = view.findViewById(R.id.recyclerView_profiles);
+        View view = inflater.inflate(R.layout.messages_list_fragment_layout, container, false);
+        recyclerView = view.findViewById(R.id.recyclerView_messages);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
 
         return  view;

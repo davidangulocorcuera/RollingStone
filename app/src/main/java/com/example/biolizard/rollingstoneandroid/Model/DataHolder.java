@@ -1,9 +1,12 @@
 package com.example.biolizard.rollingstoneandroid.Model;
 
+import com.example.biolizard.rollingstoneandroid.Model.Firebase.FirebaseAdmin;
+import com.example.biolizard.rollingstoneandroid.Model.Objects.Profile;
+
 public class DataHolder {
     public static  DataHolder instance = new DataHolder();
     public FirebaseAdmin firebaseAdmin;
-    public  Profile profile;
+    public Profile profile;
 
 
     public DataHolder() {
@@ -11,7 +14,5 @@ public class DataHolder {
         profile = new Profile();
     }
 
-    public void setProfileData(Profile profile){
-        profile.setStr_email(firebaseAdmin.user.getEmail().toString());
-    }
+
 }

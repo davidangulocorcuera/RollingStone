@@ -1,4 +1,4 @@
-package com.example.biolizard.rollingstoneandroid.Model;
+package com.example.biolizard.rollingstoneandroid.Model.Firebase;
 
 import com.google.firebase.database.DataSnapshot;
 

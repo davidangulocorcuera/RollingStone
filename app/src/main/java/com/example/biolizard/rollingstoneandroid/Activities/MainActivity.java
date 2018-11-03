@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         DataHolder.instance.firebaseAdmin.setFirebaseAdminListener(mainActivityEvents);
         loginFragment.setListener(mainActivityEvents);
         registerFragment.setListener(mainActivityEvents);
-
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.show(loginFragment);
         transaction.hide(registerFragment);

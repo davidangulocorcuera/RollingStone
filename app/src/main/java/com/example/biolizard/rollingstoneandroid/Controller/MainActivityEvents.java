@@ -8,7 +8,7 @@ import com.example.biolizard.rollingstoneandroid.Activities.CompleteProfileActiv
 import com.example.biolizard.rollingstoneandroid.Activities.MainActivity;
 import com.example.biolizard.rollingstoneandroid.Activities.PrincipalActivity;
 import com.example.biolizard.rollingstoneandroid.Model.DataHolder;
-import com.example.biolizard.rollingstoneandroid.Model.FirebaseAdminListener;
+import com.example.biolizard.rollingstoneandroid.Model.Firebase.FirebaseAdminListener;
 import com.example.rollingstonelibrary.Login.LoginFragmentListener;
 import com.example.rollingstonelibrary.Register.RegisterFragmentListener;
 import com.google.firebase.database.DataSnapshot;
@@ -56,7 +56,6 @@ public class MainActivityEvents implements LoginFragmentListener,RegisterFragmen
 
         Log.v("MAINACTIVITYEVENTS" , "resultado del registro" + bl_ok);
         if(bl_ok){
-            DataHolder.instance.setProfileData(DataHolder.instance.profile);
             Intent intent = new Intent(mainActivity,CompleteProfileActivity.class);
             mainActivity.startActivity(intent);
             mainActivity.finish();
@@ -71,9 +70,6 @@ public class MainActivityEvents implements LoginFragmentListener,RegisterFragmen
     public void firebaseAdmin_LoginOK(boolean bl_ok) {
         Log.v("MAINACTIVITYEVENTS" , "resultado del login" + bl_ok);
         if(bl_ok){
-            DataHolder.instance.setProfileData(DataHolder.instance.profile);
-            String email = DataHolder.instance.profile.getStr_email();
-            Log.v("email " , email);
             Intent intent = new Intent(mainActivity,PrincipalActivity.class);
             mainActivity.startActivity(intent);
             mainActivity.finish();
@@ -88,4 +84,5 @@ public class MainActivityEvents implements LoginFragmentListener,RegisterFragmen
     public void firebaseAdmin_BranchDownloaded(String str_branch, DataSnapshot dataSnapshot) {
         Log.v("DATASNAPSHOT" , str_branch + dataSnapshot);
     }
+
 }
