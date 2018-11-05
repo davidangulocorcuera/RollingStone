@@ -17,6 +17,13 @@ import java.util.ArrayList;
 public class ProfilesListAdapter extends RecyclerView.Adapter<ProfilesViewHolder> {
     private ArrayList<Profile> profiles;
     private Context mContext;
+    private ProfilesListAdapterlistener profilesListAdapterlistener;
+
+    public void setProfilesListAdapterlistener(ProfilesListAdapterlistener profilesListAdapterlistener) {
+        this.profilesListAdapterlistener = profilesListAdapterlistener;
+    }
+
+
 
 
     public ProfilesListAdapter(ArrayList<Profile> profiles,Context mContext){
@@ -37,6 +44,7 @@ public class ProfilesListAdapter extends RecyclerView.Adapter<ProfilesViewHolder
     public void onBindViewHolder(@NonNull ProfilesViewHolder profilesViewHolder, int position) {
         profilesViewHolder.tv_name.setText(profiles.get(position).getName());
         profilesViewHolder.tv_age.setText(profiles.get(position).getAge() + "");
+        profilesViewHolder.setProfilesListAdapterlistener(this.profilesListAdapterlistener);
 
         Glide.with(mContext).load(profiles.get(position).getImgurl())
                 .into(profilesViewHolder.iv_profilePicture);

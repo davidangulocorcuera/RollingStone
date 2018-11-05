@@ -5,16 +5,18 @@ import android.util.Log;
 import com.example.biolizard.rollingstoneandroid.Activities.PrincipalActivity;
 import com.example.biolizard.rollingstoneandroid.Adapters.MessagesListAdapter;
 import com.example.biolizard.rollingstoneandroid.Adapters.ProfilesListAdapter;
+import com.example.biolizard.rollingstoneandroid.Adapters.ProfilesListAdapterlistener;
 import com.example.biolizard.rollingstoneandroid.Model.Firebase.FirebaseAdminListener;
 import com.example.biolizard.rollingstoneandroid.Model.Objects.Message;
 import com.example.biolizard.rollingstoneandroid.Model.Objects.Profile;
+import com.example.biolizard.rollingstoneandroid.ViewHolders.ProfilesViewHolder;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.GenericTypeIndicator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PrincipalActivityEvents implements FirebaseAdminListener {
+public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesListAdapterlistener {
     PrincipalActivity principalActivity;
     HashMap<Integer, com.example.rollingstonelibrary.Model.Profile> hm_profiles;
     public PrincipalActivityEvents(PrincipalActivity principalActivity){
@@ -43,8 +45,9 @@ public class PrincipalActivityEvents implements FirebaseAdminListener {
             ArrayList <Profile> profiles = dataSnapshot.getValue(indicator);
             //Log.v("mensaje", String.valueOf());
 
-            ProfilesListAdapter profilesListAdapter = new ProfilesListAdapter(profiles,principalActivity);
-            principalActivity.listFragmentProfiles.recyclerView.setAdapter(profilesListAdapter);
+            principalActivity.profilesListAdapter = new ProfilesListAdapter(profiles,principalActivity);
+            principalActivity.listFragmentProfiles.recyclerView.setAdapter( principalActivity.profilesListAdapter);
+            principalActivity.profilesListAdapter.setProfilesListAdapterlistener(this);
 
         }
         }
@@ -64,4 +67,8 @@ public class PrincipalActivityEvents implements FirebaseAdminListener {
 
     }
 
+    @Override
+    public void profileListAdapterCellClicked(ProfilesViewHolder profilesViewHolder) {
+        Log.v("coche","funciona" + profilesViewHolder.getAdapterPosition());
+    }
 }

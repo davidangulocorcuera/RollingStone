@@ -3,6 +3,7 @@ package com.example.biolizard.rollingstoneandroid.Activities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.biolizard.rollingstoneandroid.Adapters.ProfilesListAdapter;
 import com.example.biolizard.rollingstoneandroid.Controller.PrincipalActivityEvents;
 import com.example.biolizard.rollingstoneandroid.Model.DataHolder;
 import com.example.biolizard.rollingstoneandroid.R;
@@ -11,6 +12,7 @@ import com.example.rollingstonelibrary.List.ListFragment;
 public class PrincipalActivity extends AppCompatActivity {
    public ListFragment listFragmentMessages;
    public ListFragment listFragmentProfiles;
+    public ProfilesListAdapter profilesListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
