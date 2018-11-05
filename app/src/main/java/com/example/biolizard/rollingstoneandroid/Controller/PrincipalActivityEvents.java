@@ -1,7 +1,5 @@
 package com.example.biolizard.rollingstoneandroid.Controller;
 
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.transition.Transition;
 import android.util.Log;
 
@@ -9,11 +7,17 @@ import com.example.biolizard.rollingstoneandroid.Activities.PrincipalActivity;
 import com.example.biolizard.rollingstoneandroid.Adapters.MessagesListAdapter;
 import com.example.biolizard.rollingstoneandroid.Adapters.ProfilesListAdapter;
 import com.example.biolizard.rollingstoneandroid.Adapters.ProfilesListAdapterlistener;
+import com.example.biolizard.rollingstoneandroid.Model.DataHolder;
 import com.example.biolizard.rollingstoneandroid.Model.Firebase.FirebaseAdminListener;
 import com.example.biolizard.rollingstoneandroid.Model.Objects.Message;
 import com.example.biolizard.rollingstoneandroid.Model.Objects.Profile;
 import com.example.biolizard.rollingstoneandroid.R;
 import com.example.biolizard.rollingstoneandroid.ViewHolders.ProfilesViewHolder;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.Transaction;
@@ -21,10 +25,10 @@ import com.google.firebase.database.Transaction;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesListAdapterlistener {
+public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesListAdapterlistener,OnMapReadyCallback {
     PrincipalActivity principalActivity;
-    Transaction transaction;
     HashMap<Integer, com.example.rollingstonelibrary.Model.Profile> hm_profiles;
+    GoogleMap mMap;
     public PrincipalActivityEvents(PrincipalActivity principalActivity){
         this.principalActivity = principalActivity;
     }
@@ -33,7 +37,7 @@ public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesLi
     public void firebaseAdmin_BranchDownloaded(String str_branch, DataSnapshot dataSnapshot) {
         Log.v("secondactivity", str_branch + " " + dataSnapshot);
         if(str_branch.equals("messages")){
-
+/*
          GenericTypeIndicator <HashMap<String,Message>> indicator;
 
        indicator =  new GenericTypeIndicator<HashMap<String, Message>>() {};
@@ -43,19 +47,21 @@ public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesLi
         MessagesListAdapter messagesListAdapter = new MessagesListAdapter(new ArrayList<Message>(hm_messages.values()));
         principalActivity.listFragmentMessages.recyclerView.setAdapter(messagesListAdapter);
 
-
+*/
 
         }
         else if(str_branch.equals("Profiles")) {
            GenericTypeIndicator <ArrayList<Profile>> indicator;
 
             indicator =  new GenericTypeIndicator<ArrayList<Profile>>() {};
-            ArrayList <Profile> profiles = dataSnapshot.getValue(indicator);
-            //Log.v("mensaje", String.valueOf());
+           principalActivity.profiles = dataSnapshot.getValue(indicator);
 
-            principalActivity.profilesListAdapter = new ProfilesListAdapter(profiles,principalActivity);
+
+            principalActivity.profilesListAdapter = new ProfilesListAdapter(principalActivity.profiles,principalActivity);
             principalActivity.listFragmentProfiles.recyclerView.setAdapter( principalActivity.profilesListAdapter);
             principalActivity.profilesListAdapter.setProfilesListAdapterlistener(this);
+
+            
 
         }
         }
@@ -77,6 +83,17 @@ public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesLi
 
     @Override
     public void profileListAdapterCellClicked(ProfilesViewHolder profilesViewHolder) {
+        DataHolder.instance.firebaseAdmin.downloadAndObserveBranch("Profiles");
         Log.v("coche","funciona" + profilesViewHolder.getAdapterPosition());
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        // Add a marker in Sydney and move the camera
+        /*LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
+        DataHolder.instance.firebaseAdmin.downloadAndObserveBranch("Profiles");
     }
 }

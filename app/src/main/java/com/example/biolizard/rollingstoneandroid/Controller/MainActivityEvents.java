@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 
 public class MainActivityEvents implements LoginFragmentListener,RegisterFragmentListener, FirebaseAdminListener {
   MainActivity mainActivity;
+
   public MainActivityEvents(MainActivity mainActivity){
       this.mainActivity = mainActivity;
   }
