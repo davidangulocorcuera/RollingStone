@@ -2,6 +2,7 @@ package com.example.biolizard.rollingstoneandroid.Controller;
 
 import android.transition.Transition;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.biolizard.rollingstoneandroid.Activities.PrincipalActivity;
 import com.example.biolizard.rollingstoneandroid.Adapters.MessagesListAdapter;
@@ -54,6 +55,7 @@ public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesLi
 
         }
         else if(str_branch.equals("Profiles")) {
+            deleteOldProfilesFromMap();
            GenericTypeIndicator <ArrayList<Profile>> indicator;
 
             indicator =  new GenericTypeIndicator<ArrayList<Profile>>() {};
@@ -86,6 +88,17 @@ public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesLi
               }
            }
                 }
+
+       public void deleteOldProfilesFromMap(){
+        if (profiles!=null) {
+            for (Profile elto : profiles) {
+                Profile profileTemp = elto;
+                if (profileTemp.getMarker() != null) {
+                    profileTemp.getMarker().remove();
+                }
+            }
+        }
+       }
 
 
 
@@ -121,6 +134,7 @@ public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesLi
     public boolean onMarkerClick(Marker marker) {
         Profile profile = (Profile)marker.getTag();
         Log.v("marker","presionado pin "+ profile.getName());
+        Toast.makeText(principalActivity, profile.getName(), Toast.LENGTH_SHORT).show();
         return false;
     }
 }
