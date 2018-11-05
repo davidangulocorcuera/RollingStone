@@ -28,6 +28,7 @@ import java.util.HashMap;
 public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesListAdapterlistener,OnMapReadyCallback {
     PrincipalActivity principalActivity;
     HashMap<Integer, com.example.rollingstonelibrary.Model.Profile> hm_profiles;
+     ArrayList<Profile> profiles;
     GoogleMap mMap;
     public PrincipalActivityEvents(PrincipalActivity principalActivity){
         this.principalActivity = principalActivity;
@@ -54,19 +55,28 @@ public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesLi
            GenericTypeIndicator <ArrayList<Profile>> indicator;
 
             indicator =  new GenericTypeIndicator<ArrayList<Profile>>() {};
-           principalActivity.profiles = dataSnapshot.getValue(indicator);
+         profiles = dataSnapshot.getValue(indicator);
 
 
-            principalActivity.profilesListAdapter = new ProfilesListAdapter(principalActivity.profiles,principalActivity);
+            principalActivity.profilesListAdapter = new ProfilesListAdapter(profiles,principalActivity);
             principalActivity.listFragmentProfiles.recyclerView.setAdapter( principalActivity.profilesListAdapter);
             principalActivity.profilesListAdapter.setProfilesListAdapterlistener(this);
+            addProfilesOnMap();
 
-            
 
+           }
         }
-        }
 
-
+       public void addProfilesOnMap(){
+           for (Profile elto:profiles) {
+               Profile profileTemp = elto;
+               LatLng profile_pos = new LatLng(profileTemp.getLat(),profileTemp.getLon());
+               MarkerOptions markerOptions = new MarkerOptions();
+               markerOptions.position(profile_pos);
+               markerOptions.title(profileTemp.getName());
+              if (mMap != null) mMap.addMarker(markerOptions);
+           }
+                }
 
 
 

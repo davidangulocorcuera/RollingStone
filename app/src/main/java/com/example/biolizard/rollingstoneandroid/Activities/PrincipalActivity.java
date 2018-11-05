@@ -21,7 +21,7 @@ public class PrincipalActivity extends AppCompatActivity {
     public ProfilesListAdapter profilesListAdapter;
     FragmentTransaction transaction;
     SupportMapFragment mapFragment;
-    public ArrayList<Profile> profiles;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
