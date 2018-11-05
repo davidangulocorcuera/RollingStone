@@ -12,9 +12,17 @@ import com.example.rollingstonelibrary.R;
 
 public class ListFragment extends Fragment {
    public RecyclerView recyclerView;
+   private static ListFragment instance;
+    public static ListFragment getInstance() {
+        if(instance == null) instance = new ListFragment();
+        return instance;
+    }
+
+
     public ListFragment(){
 
     }
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -4,21 +4,8 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class Profile {
-    public Profile(){
-
-    }
-
-    public Profile(String country, int age, String city, String email, String imgurl, String name, String secondUsername, String username) {
-        this.country = country;
-        this.age = age;
-        this.city = city;
-        this.email = email;
-        this.imgurl = imgurl;
-        this.name = name;
-        this.secondUsername = secondUsername;
-        this.username = username;
-    }
-
+    private double lat;
+    private double lon;
     private String country;
     private int age;
     private String city;
@@ -27,6 +14,39 @@ public class Profile {
     private String name;
     private String secondUsername;
     private String username;
+    public Profile(){
+
+    }
+
+    public Profile(String country, int age, String city, String email, String imgurl, String name, String secondUsername, String username, double lat, double lon) {
+        this.country = country;
+        this.age = age;
+        this.city = city;
+        this.email = email;
+        this.imgurl = imgurl;
+        this.name = name;
+        this.secondUsername = secondUsername;
+        this.username = username;
+        this.lat = lat;
+        this.lon = lon;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
+
 
     public String getCountry() {
         return country;

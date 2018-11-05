@@ -1,5 +1,8 @@
 package com.example.biolizard.rollingstoneandroid.Controller;
 
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.transition.Transition;
 import android.util.Log;
 
 import com.example.biolizard.rollingstoneandroid.Activities.PrincipalActivity;
@@ -9,15 +12,18 @@ import com.example.biolizard.rollingstoneandroid.Adapters.ProfilesListAdapterlis
 import com.example.biolizard.rollingstoneandroid.Model.Firebase.FirebaseAdminListener;
 import com.example.biolizard.rollingstoneandroid.Model.Objects.Message;
 import com.example.biolizard.rollingstoneandroid.Model.Objects.Profile;
+import com.example.biolizard.rollingstoneandroid.R;
 import com.example.biolizard.rollingstoneandroid.ViewHolders.ProfilesViewHolder;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.Transaction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesListAdapterlistener {
     PrincipalActivity principalActivity;
+    Transaction transaction;
     HashMap<Integer, com.example.rollingstonelibrary.Model.Profile> hm_profiles;
     public PrincipalActivityEvents(PrincipalActivity principalActivity){
         this.principalActivity = principalActivity;
@@ -36,6 +42,8 @@ public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesLi
 
         MessagesListAdapter messagesListAdapter = new MessagesListAdapter(new ArrayList<Message>(hm_messages.values()));
         principalActivity.listFragmentMessages.recyclerView.setAdapter(messagesListAdapter);
+
+
 
         }
         else if(str_branch.equals("Profiles")) {
