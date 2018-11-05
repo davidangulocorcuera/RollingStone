@@ -17,6 +17,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.GenericTypeIndicator;
@@ -25,10 +26,11 @@ import com.google.firebase.database.Transaction;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesListAdapterlistener,OnMapReadyCallback {
+public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesListAdapterlistener,OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
     PrincipalActivity principalActivity;
     HashMap<Integer, com.example.rollingstonelibrary.Model.Profile> hm_profiles;
      ArrayList<Profile> profiles;
+
     GoogleMap mMap;
     public PrincipalActivityEvents(PrincipalActivity principalActivity){
         this.principalActivity = principalActivity;
@@ -74,7 +76,14 @@ public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesLi
                MarkerOptions markerOptions = new MarkerOptions();
                markerOptions.position(profile_pos);
                markerOptions.title(profileTemp.getName());
-              if (mMap != null) mMap.addMarker(markerOptions);
+
+              if (mMap != null) {
+                  Marker marker = mMap.addMarker(markerOptions);
+                  marker.setTag(profileTemp);
+                  profileTemp.setMarker(marker);
+
+                  mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(profile_pos, 5));
+              }
            }
                 }
 
@@ -100,10 +109,18 @@ public class PrincipalActivityEvents implements FirebaseAdminListener,ProfilesLi
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        googleMap.setOnMarkerClickListener(this);
         // Add a marker in Sydney and move the camera
         /*LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
         DataHolder.instance.firebaseAdmin.downloadAndObserveBranch("Profiles");
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        Profile profile = (Profile)marker.getTag();
+        Log.v("marker","presionado pin "+ profile.getName());
+        return false;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.biolizard.rollingstoneandroid.Model.Objects;
 
+import com.google.android.gms.maps.model.Marker;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
@@ -14,11 +15,14 @@ public class Profile {
     private String name;
     private String secondUsername;
     private String username;
+    private Marker marker;
+
+
     public Profile(){
 
     }
 
-    public Profile(String country, int age, String city, String email, String imgurl, String name, String secondUsername, String username, double lat, double lon) {
+    public Profile(String country, int age, String city, String email, String imgurl, String name, String secondUsername, String username, double lat, double lon,Marker marker) {
         this.country = country;
         this.age = age;
         this.city = city;
@@ -29,6 +33,14 @@ public class Profile {
         this.username = username;
         this.lat = lat;
         this.lon = lon;
+        this.marker = marker;
+    }
+    public Marker getMarker() {
+        return marker;
+    }
+
+    public void setMarker(Marker marker) {
+        this.marker = marker;
     }
 
     public double getLat() {
